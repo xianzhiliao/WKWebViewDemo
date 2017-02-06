@@ -16,6 +16,7 @@
 		65DD8AC41E4853FC006465B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DD8AC21E4853FC006465B5 /* LaunchScreen.storyboard */; };
 		65DD8ACF1E4853FC006465B5 /* WKWebViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8ACE1E4853FC006465B5 /* WKWebViewDemoTests.m */; };
 		65DD8ADA1E4853FC006465B5 /* WKWebViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AD91E4853FC006465B5 /* WKWebViewDemoUITests.m */; };
+		65DD8AE81E4861F2006465B5 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 65DD8AE71E4861F2006465B5 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		65DD8AD51E4853FC006465B5 /* WKWebViewDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WKWebViewDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DD8AD91E4853FC006465B5 /* WKWebViewDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebViewDemoUITests.m; sourceTree = "<group>"; };
 		65DD8ADB1E4853FC006465B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65DD8AE71E4861F2006465B5 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 		65DD8AB11E4853FC006465B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				65DD8AE71E4861F2006465B5 /* index.html */,
 				65DD8AB21E4853FC006465B5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -253,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65DD8AC41E4853FC006465B5 /* LaunchScreen.storyboard in Resources */,
+				65DD8AE81E4861F2006465B5 /* index.html in Resources */,
 				65DD8AC11E4853FC006465B5 /* Assets.xcassets in Resources */,
 				65DD8ABC1E4853FC006465B5 /* Main.storyboard in Resources */,
 			);

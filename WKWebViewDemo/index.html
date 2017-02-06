@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsBridge Test</title>
+    <script src=""></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <a id="myBtn">点击</a>
+    <script>
+        document.getElementById("myBtn").addEventListener("click", function(){
+            alert("myBtn Click")
+          window.webkit.messageHandlers.showMobile.postMessage("15818696535")
+        });
+    </script>
+</body>
+</html>
