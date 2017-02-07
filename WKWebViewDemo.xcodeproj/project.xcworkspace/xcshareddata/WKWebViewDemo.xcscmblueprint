@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "52F3D7E6D9BD23AE823BC6E28407EA6A4E368ED1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3531583E0927593037E4BF93694C98C80D5F879E" : 9223372036854775807,
+    "52F3D7E6D9BD23AE823BC6E28407EA6A4E368ED1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A7877B06-CC95-4D10-B968-38B4F0AD7A98",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3531583E0927593037E4BF93694C98C80D5F879E" : "kerkee_ios\/",
+    "52F3D7E6D9BD23AE823BC6E28407EA6A4E368ED1" : "WKWebViewDemo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WKWebViewDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WKWebViewDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xianzhiliao\/kerkee_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3531583E0927593037E4BF93694C98C80D5F879E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xianzhiliao\/WKWebViewDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "52F3D7E6D9BD23AE823BC6E28407EA6A4E368ED1"
+    }
+  ]
+}

@@ -17,6 +17,7 @@
 		65DD8ACF1E4853FC006465B5 /* WKWebViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8ACE1E4853FC006465B5 /* WKWebViewDemoTests.m */; };
 		65DD8ADA1E4853FC006465B5 /* WKWebViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AD91E4853FC006465B5 /* WKWebViewDemoUITests.m */; };
 		65DD8AE81E4861F2006465B5 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 65DD8AE71E4861F2006465B5 /* index.html */; };
+		65DE202C1E49E47D0062EB5D /* NSObject+PTSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		65DD8AD91E4853FC006465B5 /* WKWebViewDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKWebViewDemoUITests.m; sourceTree = "<group>"; };
 		65DD8ADB1E4853FC006465B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65DD8AE71E4861F2006465B5 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		65DE202A1E49E47D0062EB5D /* NSObject+PTSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+PTSelector.h"; path = "../../kerkee_ios/kerkee/kerkee/BaseClass/Base/NSObject+PTSelector.h"; sourceTree = "<group>"; };
+		65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+PTSelector.m"; path = "../../kerkee_ios/kerkee/kerkee/BaseClass/Base/NSObject+PTSelector.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				65DD8AB51E4853FC006465B5 /* AppDelegate.m */,
 				65DD8AB71E4853FC006465B5 /* ViewController.h */,
 				65DD8AB81E4853FC006465B5 /* ViewController.m */,
+				65DE202A1E49E47D0062EB5D /* NSObject+PTSelector.h */,
+				65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */,
 				65DD8ABA1E4853FC006465B5 /* Main.storyboard */,
 				65DD8AC01E4853FC006465B5 /* Assets.xcassets */,
 				65DD8AC21E4853FC006465B5 /* LaunchScreen.storyboard */,
@@ -286,6 +291,7 @@
 				65DD8AB91E4853FC006465B5 /* ViewController.m in Sources */,
 				65DD8AB61E4853FC006465B5 /* AppDelegate.m in Sources */,
 				65DD8ABF1E4853FC006465B5 /* WKWebViewDemo.xcdatamodeld in Sources */,
+				65DE202C1E49E47D0062EB5D /* NSObject+PTSelector.m in Sources */,
 				65DD8AB31E4853FC006465B5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +530,7 @@
 				65DD8AE01E4853FC006465B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65DD8AE11E4853FC006465B5 /* Build configuration list for PBXNativeTarget "WKWebViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +539,7 @@
 				65DD8AE31E4853FC006465B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65DD8AE41E4853FC006465B5 /* Build configuration list for PBXNativeTarget "WKWebViewDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +548,7 @@
 				65DD8AE61E4853FC006465B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

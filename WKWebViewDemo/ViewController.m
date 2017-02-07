@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NSObject+PTSelector.h"
 @import WebKit;
 
 @interface ViewController ()
@@ -26,9 +27,9 @@ WKScriptMessageHandler
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-    //1. JS调用OC 添加处理脚本
-    [config.userContentController addScriptMessageHandler:self name:@"showMobile"];
-    config.preferences.minimumFontSize = 18;
+    // 1. JS call nativie
+    [config.userContentController addScriptMessageHandler:self name:@"saveContacts"];
+    config.preferences.minimumFontSize = 36;
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:config];
     self.webView.allowsBackForwardNavigationGestures = YES;
     self.webView.navigationDelegate = self;
@@ -99,6 +100,19 @@ WKScriptMessageHandler
 // 从web界面中接收到一个脚本时调用
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
     NSLog(@"messageName:%@\nmessageBody:%@", message.name,message.body);
+    NSString *methodName = [NSString stringWithFormat:@"%@:", message.name];
+    SEL method = NSSelectorFromString(methodName);
+    [self performSelectorSafetyWithArgs:method ,message.body];
+}
+
+- (void)saveContacts:(id)object{
+    NSLog(@"saveContacts");
+    // native call js
+    NSDictionary *dic = object;
+    NSString *js = [NSString stringWithFormat:@"showContacts('%@','%@')",dic[@"name"],dic[@"phone"]];
+    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@ %@",response,error);
+    }];
 }
 
 

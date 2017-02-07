@@ -10,9 +10,12 @@
     <a id="myBtn">点击</a>
     <script>
         document.getElementById("myBtn").addEventListener("click", function(){
-            alert("myBtn Click")
-          window.webkit.messageHandlers.showMobile.postMessage("15818696535")
+         window.webkit.messageHandlers.saveContacts.postMessage({"name":"廖贤志","phone":"15818696535"})
         });
+        function showContacts(name,phone){
+           alert("showContacts")
+           document.getElementById('myBtn').innerHTML = '获取到'+name+'的手机号:' + phone+ '!!'
+        }
     </script>
 </body>
 </html>
