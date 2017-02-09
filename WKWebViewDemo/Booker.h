@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LXZWebViewController.h"
 
-@interface Booker : NSObject<LXZWebViewControllerDelegate>
+@interface Booker : NSObject
 
-- (void)saveBooker:(id)object;
+- (void)saveContacts:(id)object;
 
 @end

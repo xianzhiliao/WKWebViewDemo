@@ -7,16 +7,16 @@
 //
 
 #import "LXZWebViewController.h"
-#import "WKWebViewConfiguration+LXZPreference.h"
-
+#import "LXZWebViewControllerManager.h"
+#import "Booker.h"
 
 @interface LXZWebViewController ()
 <
 WKNavigationDelegate,
-WKUIDelegate,
-WKScriptMessageHandler
+WKUIDelegate
 >
 
+@property (nonatomic, strong) LXZWebViewControllerManager *webManager;
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) NSURLRequest *request;
 
@@ -31,6 +31,13 @@ WKScriptMessageHandler
     // Do any additional setup after loading the view, typically from a nib.
     [self.view addSubview:self.webView];
     [self.webView loadRequest:self.request];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"native call js" style:UIBarButtonItemStylePlain target:self action:@selector(showAlert:)];
+    [self.navigationItem setRightBarButtonItem:rightItem];
+}
+
+- (void)dealloc{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,20 +47,17 @@ WKScriptMessageHandler
 
 #pragma mark - Properties
 
-- (WKWebViewConfiguration *)config{
-    if (nil == _config) {
-        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
-        [config lxz_preference];
-        // 1. JS call nativie
-        [config.userContentController addScriptMessageHandler:self name:@"saveContacts"];
-        self.config = config;
+- (LXZWebViewControllerManager *)webManager{
+    if (nil == _webManager) {
+        self.webManager = [LXZWebViewControllerManager sharedInstance];
+        self.webManager.webViewController = self;
     }
-    return _config;
+    return _webManager;
 }
 
 - (WKWebView *)webView{
     if (nil == _webView) {
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:self.config];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:self.webManager.config];
         webView.allowsBackForwardNavigationGestures = YES;
         webView.navigationDelegate = self;
         webView.UIDelegate = self;
@@ -83,7 +87,23 @@ WKScriptMessageHandler
     return self;
 }
 
+// js 执行完native后回掉
+- (void)onCallBackJsId:(NSString *)callBackId jsonStr:(NSString *)jsonStr{
+    
+    NSString *js = [NSString stringWithFormat:@"onCallBack('%@','%@')",callBackId,jsonStr];
+    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@ %@",response,error);
+    }];
+}
+
 #pragma mark - Private method
+- (IBAction)showAlert:(UIBarButtonItem *)sender {
+    // native call js
+    NSString *js = @"showAlert('native call js success')";
+    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+        NSLog(@"%@ %@",response,error);
+    }];
+}
 
 - (void)loadURLWithString:(NSString *)str{
 #warning TODO str 非合法url
@@ -149,29 +169,15 @@ WKScriptMessageHandler
  *  @param completionHandler 警告框消失调用
  */
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
-    NSLog(@"alert");
-    completionHandler();
-}
-
-#pragma mark - WKScriptMessageHandler
-
-// 从web界面中接收到一个脚本时调用
-- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    NSLog(@"messageName:%@\nmessageBody:%@", message.name,message.body);
-    NSString *methodName = [NSString stringWithFormat:@"%@:", message.name];
-    SEL method = NSSelectorFromString(methodName);
-    // 通过methodName 找到类
-    [self performSelectorSafetyWithArgs:method ,message.body];
-}
-
-- (void)saveContacts:(id)object{
-    NSLog(@"saveContacts");
-    // native call js
-    NSDictionary *dic = object;
-    NSString *js = [NSString stringWithFormat:@"showContacts('%@','%@')",dic[@"name"],dic[@"phone"]];
-    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@ %@",response,error);
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"点击确定");
     }];
+    [alertVC addAction:sureAction];
+    [self presentViewController:alertVC animated:YES completion:^{
+        
+    }];
+    completionHandler();
 }
 
 

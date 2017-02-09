@@ -7,15 +7,27 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <a id="myBtn">点击</a>
+    <div id="myBtn" style="display: flex;
+        position: relative;
+        margin-top:60%;
+        font-size:30px;
+        flex-direction: row;
+        justify-content: center;
+        background-color: green;
+        align-items: center;">js call native</div>
     <script>
-        document.getElementById("myBtn").addEventListener("click", function(){
-         window.webkit.messageHandlers.saveContacts.postMessage({"name":"廖贤志","phone":"15818696535"})
+        var i = 0;
+        document.getElementById("myBtn").addEventListener("click",function(){
+                                                          i++;
+         window.webkit.messageHandlers.saveContacts.postMessage({"name":"廖贤志","phone":"15818696535","callbackId":i})
         });
-        function showContacts(name,phone){
-           alert("showContacts")
-           document.getElementById('myBtn').innerHTML = '获取到'+name+'的手机号:' + phone+ '!!'
+        function showAlert(message){
+            alert(message)
+            return 'showAlert Success'
         }
+    function onCallBack(callBackId,jsonObject){
+         alert('回调'+callBackId+'成功，返回对象'+jsonObject)
+    }
     </script>
 </body>
 </html>

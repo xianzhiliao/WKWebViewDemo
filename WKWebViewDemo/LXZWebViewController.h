@@ -9,21 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "NSObject+PTSelector.h"
 @import WebKit;
-
-@protocol LXZWebViewControllerDelegate <NSObject>
-
-- (void)LXZWebViewController:(LXZWebViewController *)webViewController callSelector:(SEL)selector object:(id)object;
-
-@end
+@class LXZWebViewController;
+@class LXZWebViewControllerManager;
 
 @interface LXZWebViewController : UIViewController
 
-@property (nonatomic, strong) WKWebViewConfiguration *config;
 @property (nonatomic, strong, readonly) WKWebView *webView;
 
 - (instancetype)initWithURLString:(NSString *)str;
 - (instancetype)initWithURL:(NSURL *)url;
 - (instancetype)initWithURL:(NSURL *)url cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
+- (LXZWebViewControllerManager *)webManager;
+// js 执行完native后回掉
+- (void)onCallBackJsId:(NSString *)callBackId jsonStr:(NSString *)jsonStr;
 
 @end
 

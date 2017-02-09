@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6589C0871E4B0AC200D31841 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0851E4B0AC200D31841 /* ViewController.m */; };
-		6589C08E1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C08D1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.m */; };
 		6589C0911E4B2CA700D31841 /* Booker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0901E4B2CA700D31841 /* Booker.m */; };
-		6589C0931E4B471C00D31841 /* LXZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0921E4B471C00D31841 /* LXZWebViewController.m */; };
+		6589C0991E4BF6A900D31841 /* LXZWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0981E4BF6A900D31841 /* LXZWebViewController.m */; };
+		6589C0A21E4C00F700D31841 /* LXZWebViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */; };
 		65DD8AB31E4853FC006465B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AB21E4853FC006465B5 /* main.m */; };
 		65DD8AB61E4853FC006465B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AB51E4853FC006465B5 /* AppDelegate.m */; };
 		65DD8ABC1E4853FC006465B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DD8ABA1E4853FC006465B5 /* Main.storyboard */; };
@@ -43,16 +43,16 @@
 /* Begin PBXFileReference section */
 		6589C0841E4B0AC200D31841 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6589C0851E4B0AC200D31841 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6589C08C1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WKWebViewConfiguration+LXZPreference.h"; sourceTree = "<group>"; };
-		6589C08D1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewConfiguration+LXZPreference.m"; sourceTree = "<group>"; };
 		6589C08F1E4B2CA700D31841 /* Booker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Booker.h; sourceTree = "<group>"; };
 		6589C0901E4B2CA700D31841 /* Booker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Booker.m; sourceTree = "<group>"; };
-		6589C0921E4B471C00D31841 /* LXZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXZWebViewController.m; sourceTree = "<group>"; };
+		6589C0971E4BF6A900D31841 /* LXZWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXZWebViewController.h; sourceTree = "<group>"; };
+		6589C0981E4BF6A900D31841 /* LXZWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXZWebViewController.m; sourceTree = "<group>"; };
+		6589C0A01E4C00F700D31841 /* LXZWebViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXZWebViewControllerManager.h; sourceTree = "<group>"; };
+		6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXZWebViewControllerManager.m; sourceTree = "<group>"; };
 		65DD8AAE1E4853FC006465B5 /* WKWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DD8AB21E4853FC006465B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		65DD8AB41E4853FC006465B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		65DD8AB51E4853FC006465B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		65DD8AB71E4853FC006465B5 /* LXZWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LXZWebViewController.h; sourceTree = "<group>"; };
 		65DD8ABB1E4853FC006465B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65DD8ABE1E4853FC006465B5 /* WKWebViewDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WKWebViewDemo.xcdatamodel; sourceTree = "<group>"; };
 		65DD8AC01E4853FC006465B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -119,10 +119,10 @@
 			children = (
 				65DD8AB41E4853FC006465B5 /* AppDelegate.h */,
 				65DD8AB51E4853FC006465B5 /* AppDelegate.m */,
-				6589C08C1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.h */,
-				6589C08D1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.m */,
-				65DD8AB71E4853FC006465B5 /* LXZWebViewController.h */,
-				6589C0921E4B471C00D31841 /* LXZWebViewController.m */,
+				6589C0971E4BF6A900D31841 /* LXZWebViewController.h */,
+				6589C0981E4BF6A900D31841 /* LXZWebViewController.m */,
+				6589C0A01E4C00F700D31841 /* LXZWebViewControllerManager.h */,
+				6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */,
 				65DE202A1E49E47D0062EB5D /* NSObject+PTSelector.h */,
 				65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */,
 				6589C0841E4B0AC200D31841 /* ViewController.h */,
@@ -305,9 +305,9 @@
 			files = (
 				6589C0871E4B0AC200D31841 /* ViewController.m in Sources */,
 				65DD8AB61E4853FC006465B5 /* AppDelegate.m in Sources */,
+				6589C0991E4BF6A900D31841 /* LXZWebViewController.m in Sources */,
+				6589C0A21E4C00F700D31841 /* LXZWebViewControllerManager.m in Sources */,
 				65DD8ABF1E4853FC006465B5 /* WKWebViewDemo.xcdatamodeld in Sources */,
-				6589C08E1E4B151800D31841 /* WKWebViewConfiguration+LXZPreference.m in Sources */,
-				6589C0931E4B471C00D31841 /* LXZWebViewController.m in Sources */,
 				6589C0911E4B2CA700D31841 /* Booker.m in Sources */,
 				65DE202C1E49E47D0062EB5D /* NSObject+PTSelector.m in Sources */,
 				65DD8AB31E4853FC006465B5 /* main.m in Sources */,
