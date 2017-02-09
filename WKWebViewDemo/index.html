@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+    <div style="display: flex;
+        position: relative;
+        margin-left:30px;
+        margin-top:30%;
+        font-size:30px;
+        flex-direction: row;
+        align-items: center;">name:张三</div>
+    <div style="display: flex;
+        position: relative;
+        margin-left:30px;
+        margin-top:100px;
+        font-size:30px;
+        flex-direction: row;
+        align-items: center;">phone:15818696535</div>
     <div id="myBtn" style="display: flex;
         position: relative;
-        margin-top:60%;
+        margin-top:300px;
         font-size:30px;
         flex-direction: row;
         justify-content: center;
@@ -19,14 +33,14 @@
         var i = 0;
         document.getElementById("myBtn").addEventListener("click",function(){
                                                           i++;
-         window.webkit.messageHandlers.saveContacts.postMessage({"name":"廖贤志","phone":"15818696535","callbackId":i})
+                                                          window.webkit.messageHandlers.PutaoH5JSBridge.postMessage({"keyName":"saveContacts","optParams":{"name":"廖贤志","phone":"15818696535"},"callBack":i})
         });
         function showAlert(message){
             alert(message)
             return 'showAlert Success'
         }
     function onCallBack(callBackId,jsonObject){
-         alert('回调'+callBackId+'成功，返回对象'+jsonObject)
+        alert('回调'+callBackId+'成功')
     }
     </script>
 </body>

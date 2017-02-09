@@ -8,7 +8,7 @@
 
 #import "LXZWebViewController.h"
 #import "LXZWebViewControllerManager.h"
-#import "Booker.h"
+#import "PutaoH5JSBridge.h"
 
 @interface LXZWebViewController ()
 <
@@ -88,9 +88,22 @@ WKUIDelegate
 }
 
 // js 执行完native后回掉
-- (void)onCallBackJsId:(NSString *)callBackId jsonStr:(NSString *)jsonStr{
+- (void)onCallBackJsId:(NSString *)callBackId result:(NSDictionary *)result{
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
     
-    NSString *js = [NSString stringWithFormat:@"onCallBack('%@','%@')",callBackId,jsonStr];
+    NSString *jsonString = @"";
+    
+    if (! jsonData)
+    {
+        NSLog(@"Got an error: %@", error);
+    }else
+    {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    NSString *js = [NSString stringWithFormat:@"onCallBack('%@',%@)",callBackId,jsonString];
     [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
         NSLog(@"%@ %@",response,error);
     }];

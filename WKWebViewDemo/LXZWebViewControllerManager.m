@@ -7,11 +7,11 @@
 //
 
 #import "LXZWebViewControllerManager.h"
-#import "Booker.h"
+#import "PutaoJsBridgeDistributer.h"
 
 @interface LXZWebViewControllerManager()
 
-@property (nonatomic, strong) NSMutableDictionary *mMethodMap;
+@property (nonatomic, strong) NSMutableDictionary *mJSBridgeMap;
 
 @end
 
@@ -31,27 +31,23 @@
 - (instancetype)init{
     if (self = [super init]) {
         // 1. JS call nativie
-        [self registerAllClass];
-        [self addAllScriptMessage];
+        [self registerAllJSBridge];
+        [self addAllJSBridge];
     }
     return self;
 }
 
 - (void)dealloc{
-    [self removeAllScriptMessage];
+    [self removeAllJSBridge];
 }
 
 #pragma mark - Properties
 
-- (NSMutableDictionary *)mMethodMap{
-    if (nil == _mMethodMap) {
-        self.mMethodMap = @{}.mutableCopy;
+- (NSMutableDictionary *)mJSBridgeMap{
+    if (nil == _mJSBridgeMap) {
+        self.mJSBridgeMap = @{}.mutableCopy;
     }
-    return _mMethodMap;
-}
-
-- (NSDictionary *)methodMap{
-    return self.mMethodMap;
+    return _mJSBridgeMap;
 }
 
 - (WKWebViewConfiguration *)config{
@@ -65,33 +61,37 @@
 
 #pragma mark - Private method
 
-- (void)addAllScriptMessage{
-    [self.methodMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+- (void)addAllJSBridge{
+    [self.mJSBridgeMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [self.config.userContentController addScriptMessageHandler:self name:key];
     }];
 }
 
-- (void)removeAllScriptMessage{
-    [self.methodMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+- (void)removeAllJSBridge{
+    [self.mJSBridgeMap enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [self.config.userContentController removeScriptMessageHandlerForName:key];
     }];
 }
 
 #pragma mark - Public method
 
-- (void)registerAllClass{
-    [self.mMethodMap setObject:[Booker class] forKey:@"saveContacts"];
+- (void)registerAllJSBridge{
+    [self.mJSBridgeMap setObject:[PutaoJsBridgeDistributer class] forKey:@"PutaoH5JSBridge"];
 }
 
 #pragma mark - WKScriptMessageHandler
 
 // 从web界面中接收到一个脚本时调用
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
-    NSString *methodName = [NSString stringWithFormat:@"%@:arguments:", message.name];
-    SEL method = NSSelectorFromString(methodName);
+    NSDictionary *body = message.body;
+    NSString *methodName = [body objectForKey:@"keyName"];
+    NSDictionary *params = [body objectForKey:@"optParams"];
+    NSString *callBack = [body objectForKey:@"callBack"];
+    
+    // maybe PutaoH5JSBridge或PutaoTrainH5JsBridge...
+    Class clz = NSClassFromString(message.name);
     // 通过methodName 找到注册类实例化调用,如果有回掉自行执行
-    Class clz = [self.methodMap objectForKey:message.name];
-    [[[clz alloc]init] performSelectorSafetyWithArgs:method ,self.webViewController,message.body];
+    [[[PutaoJsBridgeDistributer alloc]init] webViewController:self.webViewController callClz:clz method:methodName params:params callBack:callBack];
 }
 
 @end

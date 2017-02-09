@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "LXZWebViewController.h"
 
-@interface Booker : NSObject
+@interface PutaoTrainH5JsBridge : NSObject
 
-- (void)saveContacts:(id)object;
+
 
 @end

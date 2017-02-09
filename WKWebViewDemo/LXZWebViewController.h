@@ -21,7 +21,7 @@
 - (instancetype)initWithURL:(NSURL *)url cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
 - (LXZWebViewControllerManager *)webManager;
 // js 执行完native后回掉
-- (void)onCallBackJsId:(NSString *)callBackId jsonStr:(NSString *)jsonStr;
+- (void)onCallBackJsId:(NSString *)callBackId result:(NSDictionary *)result;
 
 @end
 

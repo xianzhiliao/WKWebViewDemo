@@ -15,10 +15,9 @@
 WKScriptMessageHandler
 >
 
-@property (nonatomic, strong, readonly) NSDictionary *methodMap;
 @property (nonatomic, strong) WKWebViewConfiguration *config;
 @property (nonatomic, weak) LXZWebViewController *webViewController;
 + (instancetype)sharedInstance;
-- (void)registerAllClass;
+- (void)registerAllJSBridge;
 
 @end
