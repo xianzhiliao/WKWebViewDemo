@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NSObject+PTSelector.h"
+#import "PutaoJSExecutor.h"
 @import WebKit;
 @class LXZWebViewController;
 @class LXZWebViewControllerManager;
@@ -20,8 +21,6 @@
 - (instancetype)initWithURL:(NSURL *)url;
 - (instancetype)initWithURL:(NSURL *)url cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
 - (LXZWebViewControllerManager *)webManager;
-// js 执行完native后回掉
-- (void)onCallBackJsId:(NSString *)callBackId result:(NSDictionary *)result;
 
 @end
 

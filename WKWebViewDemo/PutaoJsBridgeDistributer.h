@@ -1,5 +1,5 @@
 //
-//  Booker.h
+//  PutaoJsBridgeDistributer.h
 //  WKWebViewDemo
 //
 //  Created by xianzhiliao on 2017/2/8.
@@ -11,10 +11,9 @@
 
 @interface PutaoJsBridgeDistributer : NSObject
 
-- (void)webViewController:(LXZWebViewController *)webViewController
-                  callClz:(Class)clz
-                   method:(NSString *)methodName
-                   params:(NSDictionary *)params
-                 callBack:(NSString *)callBack;
++ (NSArray *)jsBridgeNames;
+
++ (void)distributerScriptMsg:(WKScriptMessage *)message
+           webViewController:(LXZWebViewController *)webViewController;
 
 @end

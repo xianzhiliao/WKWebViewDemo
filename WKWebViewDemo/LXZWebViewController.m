@@ -18,6 +18,7 @@ WKUIDelegate
 
 @property (nonatomic, strong) LXZWebViewControllerManager *webManager;
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURLRequest *request;
 
 @end
@@ -29,15 +30,21 @@ WKUIDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
     [self.view addSubview:self.webView];
     [self.webView loadRequest:self.request];
+    
+    self.progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame),2)];
+    [self.progressView setProgressTintColor:[UIColor redColor]];
+    [self.view addSubview:self.progressView];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"native call js" style:UIBarButtonItemStylePlain target:self action:@selector(showAlert:)];
     [self.navigationItem setRightBarButtonItem:rightItem];
 }
 
 - (void)dealloc{
-    
+     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,35 +94,18 @@ WKUIDelegate
     return self;
 }
 
-// js 执行完native后回掉
-- (void)onCallBackJsId:(NSString *)callBackId result:(NSDictionary *)result{
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:result
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    
-    NSString *jsonString = @"";
-    
-    if (! jsonData)
-    {
-        NSLog(@"Got an error: %@", error);
-    }else
-    {
-        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }
-    NSString *js = [NSString stringWithFormat:@"onCallBack('%@',%@)",callBackId,jsonString];
-    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@ %@",response,error);
-    }];
-}
-
 #pragma mark - Private method
 - (IBAction)showAlert:(UIBarButtonItem *)sender {
     // native call js
     NSString *js = @"showAlert('native call js success')";
-    [self.webView evaluateJavaScript:js completionHandler:^(id _Nullable response, NSError * _Nullable error) {
-        NSLog(@"%@ %@",response,error);
+//    NSString *js = @"showContact({'name':'张三','phone':'15818696535'})";
+    [PutaoJSExecutor callJS:js inWebView:self.webView completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+         NSLog(@"%@ %@",response,error);
     }];
+//    NSDictionary *result = @{@"name":@"张三",@"phone":@"15818696535"};
+//    [PutaoJSExecutor callJSFunction:@"showContact" withJSONObject:result inWebView:self.webView completionHandler:^(id _Nullable response, NSError * _Nullable error) {
+//        NSLog(@"%@ %@",response,error);
+//    }];
 }
 
 - (void)loadURLWithString:(NSString *)str{
@@ -191,6 +181,25 @@ WKUIDelegate
         
     }];
     completionHandler();
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    NSLog(@" %s,change = %@",__FUNCTION__,change);
+    if ([keyPath isEqual: @"estimatedProgress"] && object == self.webView) {
+        [self.progressView setAlpha:1.0f];
+        [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
+        if(self.webView.estimatedProgress >= 1.0f)
+        {
+            [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                [self.progressView setAlpha:0.0f];
+            } completion:^(BOOL finished) {
+                [self.progressView setProgress:0.0f animated:NO];
+            }];
+        }
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 

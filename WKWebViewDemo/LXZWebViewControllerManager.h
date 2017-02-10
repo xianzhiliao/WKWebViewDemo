@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LXZWebViewController.h"
 @import WebKit;
+@class PutaoJSExecutor;
 
 @interface LXZWebViewControllerManager : NSObject
 <
@@ -18,6 +19,5 @@ WKScriptMessageHandler
 @property (nonatomic, strong) WKWebViewConfiguration *config;
 @property (nonatomic, weak) LXZWebViewController *webViewController;
 + (instancetype)sharedInstance;
-- (void)registerAllJSBridge;
 
 @end

@@ -13,6 +13,7 @@
 		6589C0A21E4C00F700D31841 /* LXZWebViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */; };
 		6589C0A51E4C91CF00D31841 /* PutaoTrainH5JsBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0A41E4C91CF00D31841 /* PutaoTrainH5JsBridge.m */; };
 		6589C0A81E4C923E00D31841 /* PutaoJsBridgeDistributer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0A71E4C923E00D31841 /* PutaoJsBridgeDistributer.m */; };
+		6589C0AB1E4D53D700D31841 /* PutaoJSExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6589C0AA1E4D53D700D31841 /* PutaoJSExecutor.m */; };
 		65DD8AB31E4853FC006465B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AB21E4853FC006465B5 /* main.m */; };
 		65DD8AB61E4853FC006465B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD8AB51E4853FC006465B5 /* AppDelegate.m */; };
 		65DD8ABC1E4853FC006465B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65DD8ABA1E4853FC006465B5 /* Main.storyboard */; };
@@ -55,6 +56,8 @@
 		6589C0A41E4C91CF00D31841 /* PutaoTrainH5JsBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PutaoTrainH5JsBridge.m; sourceTree = "<group>"; };
 		6589C0A61E4C923E00D31841 /* PutaoJsBridgeDistributer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PutaoJsBridgeDistributer.h; sourceTree = "<group>"; };
 		6589C0A71E4C923E00D31841 /* PutaoJsBridgeDistributer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PutaoJsBridgeDistributer.m; sourceTree = "<group>"; };
+		6589C0A91E4D53D700D31841 /* PutaoJSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PutaoJSExecutor.h; sourceTree = "<group>"; };
+		6589C0AA1E4D53D700D31841 /* PutaoJSExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PutaoJSExecutor.m; sourceTree = "<group>"; };
 		65DD8AAE1E4853FC006465B5 /* WKWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WKWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DD8AB21E4853FC006465B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		65DD8AB41E4853FC006465B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -100,6 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6589C0AC1E4D53F700D31841 /* webViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				6589C0971E4BF6A900D31841 /* LXZWebViewController.h */,
+				6589C0981E4BF6A900D31841 /* LXZWebViewController.m */,
+				6589C0A01E4C00F700D31841 /* LXZWebViewControllerManager.h */,
+				6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */,
+				65DE202A1E49E47D0062EB5D /* NSObject+PTSelector.h */,
+				65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */,
+				6589C0A61E4C923E00D31841 /* PutaoJsBridgeDistributer.h */,
+				6589C0A71E4C923E00D31841 /* PutaoJsBridgeDistributer.m */,
+				6589C0A91E4D53D700D31841 /* PutaoJSExecutor.h */,
+				6589C0AA1E4D53D700D31841 /* PutaoJSExecutor.m */,
+			);
+			name = webViewModule;
+			sourceTree = "<group>";
+		};
 		65DD8AA51E4853FB006465B5 = {
 			isa = PBXGroup;
 			children = (
@@ -123,18 +143,11 @@
 		65DD8AB01E4853FC006465B5 /* WKWebViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6589C0AC1E4D53F700D31841 /* webViewModule */,
 				65DD8AB41E4853FC006465B5 /* AppDelegate.h */,
 				65DD8AB51E4853FC006465B5 /* AppDelegate.m */,
-				6589C0971E4BF6A900D31841 /* LXZWebViewController.h */,
-				6589C0981E4BF6A900D31841 /* LXZWebViewController.m */,
-				6589C0A01E4C00F700D31841 /* LXZWebViewControllerManager.h */,
-				6589C0A11E4C00F700D31841 /* LXZWebViewControllerManager.m */,
-				65DE202A1E49E47D0062EB5D /* NSObject+PTSelector.h */,
-				65DE202B1E49E47D0062EB5D /* NSObject+PTSelector.m */,
 				6589C0841E4B0AC200D31841 /* ViewController.h */,
 				6589C0851E4B0AC200D31841 /* ViewController.m */,
-				6589C0A61E4C923E00D31841 /* PutaoJsBridgeDistributer.h */,
-				6589C0A71E4C923E00D31841 /* PutaoJsBridgeDistributer.m */,
 				6589C08F1E4B2CA700D31841 /* PutaoH5JSBridge.h */,
 				6589C0901E4B2CA700D31841 /* PutaoH5JSBridge.m */,
 				6589C0A31E4C91CF00D31841 /* PutaoTrainH5JsBridge.h */,
@@ -323,6 +336,7 @@
 				65DE202C1E49E47D0062EB5D /* NSObject+PTSelector.m in Sources */,
 				65DD8AB31E4853FC006465B5 /* main.m in Sources */,
 				6589C0A51E4C91CF00D31841 /* PutaoTrainH5JsBridge.m in Sources */,
+				6589C0AB1E4D53D700D31841 /* PutaoJSExecutor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
