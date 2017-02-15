@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LXZWebViewController.h"
+#import "PTWebView.h"
 
 @interface PutaoJsBridgeDistributer : NSObject
 
 + (NSArray *)jsBridgeNames;
 
-+ (void)distributerScriptMsg:(WKScriptMessage *)message
-           webViewController:(LXZWebViewController *)webViewController;
++ (void)distributerScriptMsg:(WKScriptMessage *)message;
 
 @end

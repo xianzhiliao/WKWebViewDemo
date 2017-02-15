@@ -7,17 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LXZWebViewController.h"
+@class PTWebView;
 @import WebKit;
 @class PutaoJSExecutor;
 
-@interface LXZWebViewControllerManager : NSObject
+@interface PTWebViewMessageManager : NSObject
 <
+WKNavigationDelegate,
+WKUIDelegate,
 WKScriptMessageHandler
 >
 
 @property (nonatomic, strong) WKWebViewConfiguration *config;
-@property (nonatomic, weak) LXZWebViewController *webViewController;
+@property (nonatomic, weak) PTWebView *webView;
 + (instancetype)sharedInstance;
 
 @end

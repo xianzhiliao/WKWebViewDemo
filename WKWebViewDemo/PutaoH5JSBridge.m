@@ -10,7 +10,9 @@
 
 @implementation PutaoH5JSBridge
 
-- (void)webViewController:(LXZWebViewController *)webViewController saveContacts:(NSDictionary *)params callBack:(NSString *)callBack{
+- (void)webView:(PTWebView *)webView
+   saveContacts:(NSDictionary *)params
+       callBack:(NSString *)callBack{
     
     NSString *name = [params objectForKey:@"name"];
     NSString *phone = [params objectForKey:@"phone"];
@@ -20,7 +22,7 @@
         NSLog(@"点击确定");
         NSDictionary *result = @{@"result_code":@(0),@"msg":@"saveContacts success",@"data":@{@"name":name,@"phone":phone}};
 //        [webViewController onCallBackJsId:callBack result:result];
-        [PutaoJSExecutor callbackJS:webViewController.webView callbackId:callBack withJSONObject:result];
+        [PutaoJSExecutor callbackJS:webView callbackId:callBack withJSONObject:result];
     }];
     [alertVC addAction:sureAction];
     UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;

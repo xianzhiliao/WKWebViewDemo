@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LXZWebViewController.h"
+#import "PTWebView.h"
 
 @interface PutaoH5JSBridge : NSObject
 
-- (void)webViewController:(LXZWebViewController *)webViewController saveContacts:(NSDictionary *)params callBack:(NSString *)callBack;
+- (void)webView:(PTWebView *)webView
+   saveContacts:(NSDictionary *)params
+       callBack:(NSString *)callBack;
 
 @end

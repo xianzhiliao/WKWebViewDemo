@@ -8,19 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "NSObject+PTSelector.h"
-#import "PutaoJSExecutor.h"
 @import WebKit;
 @class LXZWebViewController;
-@class LXZWebViewControllerManager;
+@class PTWebViewMessageManager;
+@class PTWebView;
 
 @interface LXZWebViewController : UIViewController
 
-@property (nonatomic, strong, readonly) WKWebView *webView;
+@property (nonatomic, strong, readonly) PTWebView *webView;
 
 - (instancetype)initWithURLString:(NSString *)str;
 - (instancetype)initWithURL:(NSURL *)url;
 - (instancetype)initWithURL:(NSURL *)url cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
-- (LXZWebViewControllerManager *)webManager;
 
 @end
 

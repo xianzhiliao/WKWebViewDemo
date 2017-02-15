@@ -7,17 +7,12 @@
 //
 
 #import "LXZWebViewController.h"
-#import "LXZWebViewControllerManager.h"
+#import "PTWebViewMessageManager.h"
 #import "PutaoH5JSBridge.h"
 
 @interface LXZWebViewController ()
-<
-WKNavigationDelegate,
-WKUIDelegate
->
 
-@property (nonatomic, strong) LXZWebViewControllerManager *webManager;
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) PTWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) NSURLRequest *request;
 
@@ -30,14 +25,12 @@ WKUIDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
+
     [self.view addSubview:self.webView];
     [self.webView loadRequest:self.request];
     
-    self.progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0, 65, CGRectGetWidth(self.view.frame),2)];
-    [self.progressView setProgressTintColor:[UIColor redColor]];
-    [self.view addSubview:self.progressView];
+    self.webView.progressView.frame = CGRectMake(0, 64 - 3.5, [UIScreen mainScreen].bounds.size.width, 3);
+    [self.navigationController.navigationBar addSubview:self.webView.progressView];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"native call js" style:UIBarButtonItemStylePlain target:self action:@selector(showAlert:)];
     [self.navigationItem setRightBarButtonItem:rightItem];
@@ -54,20 +47,11 @@ WKUIDelegate
 
 #pragma mark - Properties
 
-- (LXZWebViewControllerManager *)webManager{
-    if (nil == _webManager) {
-        self.webManager = [LXZWebViewControllerManager sharedInstance];
-        self.webManager.webViewController = self;
-    }
-    return _webManager;
-}
-
-- (WKWebView *)webView{
+- (PTWebView *)webView{
     if (nil == _webView) {
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:self.webManager.config];
+        PTWebView *webView = [[PTWebView alloc] initWithFrame:self.view.frame];
+        webView.messageResponseViewController = self;
         webView.allowsBackForwardNavigationGestures = YES;
-        webView.navigationDelegate = self;
-        webView.UIDelegate = self;
         self.webView = webView;
     }
     return _webView;
@@ -123,83 +107,6 @@ WKUIDelegate
 - (void)loadURL:(NSURL *)url cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval{
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:cachePolicy timeoutInterval:timeoutInterval];
     self.request = request;
-}
-
-#pragma mark - WKNavigationDelegate
-
-// 页面开始加载时调用
-- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    NSLog(@"didStartProvisionalNavigation");
-}
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    NSLog(@"didCommitNavigation");
-}
-// 页面加载完成之后调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSLog(@"didFinishNavigation");
-}
-// 页面加载失败时调用
-- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation{
-    NSLog(@"didFailProvisionalNavigation");
-}
-
-// 接收到服务器跳转请求之后调用
-- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
-}
-// 在收到响应后，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
-    decisionHandler(WKNavigationResponsePolicyAllow);
-}
-// 在发送请求之前，决定是否跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
-
-#pragma mark - WKUIDelegate
-
-// 创建一个新的WebView
-- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures{
-    return nil;
-}
-
-/**
- *  web界面中有弹出警告框时调用
- *
- *  @param webView           实现该代理的webview
- *  @param message           警告框中的内容
- *  @param frame             主窗口
- *  @param completionHandler 警告框消失调用
- */
-- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"点击确定");
-    }];
-    [alertVC addAction:sureAction];
-    [self presentViewController:alertVC animated:YES completion:^{
-        
-    }];
-    completionHandler();
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    NSLog(@" %s,change = %@",__FUNCTION__,change);
-    if ([keyPath isEqual: @"estimatedProgress"] && object == self.webView) {
-        [self.progressView setAlpha:1.0f];
-        [self.progressView setProgress:self.webView.estimatedProgress animated:YES];
-        if(self.webView.estimatedProgress >= 1.0f)
-        {
-            [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                [self.progressView setAlpha:0.0f];
-            } completion:^(BOOL finished) {
-                [self.progressView setProgress:0.0f animated:NO];
-            }];
-        }
-    }
-    else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
 }
 
 

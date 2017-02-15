@@ -34,7 +34,11 @@
         document.getElementById("myBtn").addEventListener("click",function(){
                                                           i++;
                                                           window.webkit.messageHandlers.PutaoH5JSBridge.postMessage({"keyName":"saveContacts","optParams":{"name":"廖贤志","phone":"15818696535"},"callBack":i})
+<!--                                                          window.PutaoH5JSBridge.call('saveContacts',{"name":"廖贤志","phone":"15818696535"},"callBack")-->
         });
+        
+<!--        PutaoH5JSBridge.call('saveContacts',{"name":"廖贤志","phone":"15818696535"},"callBack")-->
+
         function showAlert(message){
             alert(message)
             return 'showAlert Success'
